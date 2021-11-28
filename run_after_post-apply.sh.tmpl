@@ -158,7 +158,7 @@ else
 fi
 
 echo
-if ! check fisher; then
+if ! fish -c 'fisher' > /dev/null 2>&1; then
     fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
     chezlog "Successfully installed fisher"
 fi
