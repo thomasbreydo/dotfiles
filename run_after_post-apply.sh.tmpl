@@ -1,16 +1,15 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 set -ueo pipefail
 
 {{ if .has_root }}
-export HASROOT=0
-{{ else }}
 export HASROOT=1
+{{ else }}
+export HASROOT=0
 {{ end }}
 
 pushd
 cd `chezmoi source-path`
-pwd
 
 scripts/install-homebrew.sh
 brew bundle
