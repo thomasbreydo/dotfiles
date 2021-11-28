@@ -10,7 +10,7 @@ set -ueo pipefail
 #####################################################
 cat > Brewfile <<- EOF
 
-{{ if .has_root -}}
+{{- if .has_root -}}
 
 ############################
 # We have root access, so:
