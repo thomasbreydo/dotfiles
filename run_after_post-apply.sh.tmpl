@@ -60,7 +60,7 @@ chezlog() {
 }
 
 prompt_yn() {
-    while 1; do
+    while true; do
         read -p "$1 (y/n)? " yn
         case $yn in
             [Yy]* ) return 1;;
