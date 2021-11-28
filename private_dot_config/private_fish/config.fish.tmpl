@@ -1,0 +1,14 @@
+set -gxp fish_user_paths $HOME/.homebrew/bin
+
+pyenv init - | source
+pyenv virtualenv-init - | source
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/thomasbreydo/google-cloud-sdk/path.fish.inc' ]; . '/Users/thomasbreydo/google-cloud-sdk/path.fish.inc'; end
+
+chruby ruby-2.7.2
+
+set -gx HOMEBREW (brew --prefix)
+set -gx LDFLAGS "$LDFLAGS -L$HOMEBREW/lib"
+set -gx CPPFLAGS "$CPPFLAGS -I$HOMEBREW/include"
+set -gx CPPFLAGS "$CPPFLAGS -I$HOMEBREW/include"
