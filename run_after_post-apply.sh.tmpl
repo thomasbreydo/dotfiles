@@ -16,6 +16,10 @@ cat > Brewfile <<- EOF
 # We have root access, so:
 ############################
 brew "fish"
+cask "gpg-suite"
+cask "mactex"
+cask "hiddenbar"
+cask "rectangle"
 ############################
 
 {{ else -}}
@@ -24,6 +28,7 @@ brew "fish"
 # We don't have root access, so:
 ##################################
 cask_args appdir: "~/Application"
+brew "gnupg"  # replaces gpg-suite
 ##################################
 
 {{ end -}}
@@ -35,10 +40,6 @@ brew "pyenv"
 brew "pyenv-virtualenv"
 brew "gh"
 brew "pinentry-mac"
-brew "gnupg"
-cask "mactex"
-cask "hiddenbar"
-cask "rectangle"
 ##################################
 
 EOF
@@ -90,6 +91,7 @@ check() {
 #####################################################
 # HOMEBREW ##########################################
 #####################################################
+echo
 if ! check brew; then
     chezlog "Homebrew installation not found"
     {{ if .has_root }}
@@ -108,12 +110,11 @@ if ! check brew; then
     chezlog "Successfully installed Homebrew"
 fi
 
+echo
 chezlog "Using brew bundle with the following Brewfile:"
 cat Brewfile
-echo
 brew bundle
 chezlog "Successfully ran brew bundle"
-echo
 #####################################################
 #####################################################
 #####################################################
@@ -128,6 +129,7 @@ echo
 #####################################################
 # FISH ##############################################
 #####################################################
+echo
 if ! check fish; then
     chezlog "fish installation not found"
     chezlog "Installing fish with brew"
@@ -135,6 +137,7 @@ if ! check fish; then
     chezlog "Successfully installed fish"
 fi
 
+echo
 chezlog "Checking if login shell is set to fish"
 if [[ $SHELL != `which fish` ]]; then
     chezlog "Login shell is currently $SHELL"
@@ -149,15 +152,20 @@ else
     chezlog "Login shell is set to fish"
 fi
 
+echo
 if ! check fisher; then
     fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
     chezlog "Successfully installed fisher"
 fi
 
+
+echo
+chezlog "Using fisher to install fish plugins"
 fish -c 'fisher update'
 fish -c 'fisher install jethrokuan/z'
 fish -c 'fisher install jhillyerd/plugin-git'
 fish -c 'fisher install oh-my-fish/theme-agnoster'
+fish -c 'fisher install oh-my-fish/plugin-pyenv'
 #####################################################
 #####################################################
 #####################################################
