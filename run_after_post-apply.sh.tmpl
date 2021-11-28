@@ -8,11 +8,12 @@ export HASROOT=0
 export HASROOT=1
 {{ end }}
 
+pushd
 chezmoi cd
 
-echo Installing homebrew
 scripts/install-homebrew.sh
 brew bundle
 
-echo Installing fish
 scripts/install-fish.sh
+
+popd
