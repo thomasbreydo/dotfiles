@@ -167,14 +167,10 @@ FPLUGINS="$FPLUGINS jethrokuan/z"
 FPLUGINS="$FPLUGINS jhillyerd/plugin-git"
 FPLUGINS="$FPLUGINS oh-my-fish/theme-agnoster"
 FPLUGINS="$FPLUGINS oh-my-fish/plugin-pyenv" 
-chezlog "Using fisher to install the following plugins:"
+chezlog "Using fisher to install the following fish plugins:"
 echo $FPLUGINS | tr " " "\n"
 fish -c "fisher install $FPLUGINS"
-
-echo
-chezlog "Updating fisher"
-fish -c 'fisher update'
-fish -c "fisher install $FPLUGINS"
+chezlog "Successfully installed fish plugins with fisher"
 
 #####################################################
 #####################################################
