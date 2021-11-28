@@ -8,11 +8,11 @@ export HASROOT=1
 export HASROOT=0
 {{ end }}
 
-pushd `chezmoi source-path`
+#pushd `chezmoi source-path`
 
 scripts/install-homebrew.sh
 brew bundle
 
 scripts/install-fish.sh
 
-popd
+#popd
