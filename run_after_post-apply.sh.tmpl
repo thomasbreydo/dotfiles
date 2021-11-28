@@ -30,5 +30,8 @@ if ! which brew > /dev/null 2>&1; then
     fi
 fi
 
+echo Installing brew formalae and casks
+echo $BREWBUNDLE | brew bundle
+
 echo Setting the login shell to fish
 chsh -s `which fish`
