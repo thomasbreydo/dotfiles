@@ -9,8 +9,7 @@ set -ueo pipefail
 # ADD BREW FORMULAE/CASKS BELOW #####################
 #####################################################
 cat > Brewfile <<- EOF
-
-{{- if .has_root -}}
+{{ if .has_root -}}
 
 ############################
 # We have root access, so:
