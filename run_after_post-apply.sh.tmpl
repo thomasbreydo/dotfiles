@@ -33,5 +33,7 @@ fi
 echo Installing brew formalae and casks
 echo $BREWBUNDLE | brew bundle
 
-echo Setting the login shell to fish
-chsh -s `which fish`
+if [[ $SHELL != `which fish` ]]; then
+    echo Setting the login shell to fish
+    chsh -s `which fish`
+fi
