@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 set -ueo pipefail
 
@@ -10,7 +10,9 @@ export HASROOT=1
 
 chezmoi cd
 
+echo Installing homebrew
 scripts/install-homebrew.sh
 brew bundle
 
+echo Installing fish
 scripts/install-fish.sh
