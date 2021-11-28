@@ -27,7 +27,6 @@ cask "rectangle"
 # We don't have root access, so:
 ##################################
 cask_args appdir: "~/Application"
-brew "gnupg", args: ["bulid-from-source"]  # replaces gpg-suite
 ##################################
 
 {{ end -}}
@@ -39,6 +38,8 @@ brew "pyenv"
 brew "pyenv-virtualenv"
 brew "gh"
 brew "pinentry-mac"
+brew "chruby"
+brew "chruby-fish"
 ##################################
 
 EOF
@@ -114,6 +115,14 @@ chezlog "Using brew bundle with the following Brewfile:"
 cat Brewfile
 brew bundle
 chezlog "Successfully ran brew bundle"
+
+{{ if not .has_root -}}
+echo
+chezlog "Installing gnupg since gpg-suite requires sudo"
+# Brewfile doesn't realize this might need to be built from source
+brew install gnupg
+chezlog "Successfully installed gnupg"
+{{ end -}}
 #####################################################
 #####################################################
 #####################################################
