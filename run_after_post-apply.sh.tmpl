@@ -9,7 +9,7 @@ export HASROOT=1
 {{ end }}
 
 pushd
-chezmoi cd
+cd `chezmoi source-path`
 pwd
 
 scripts/install-homebrew.sh
