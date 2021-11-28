@@ -27,7 +27,7 @@ cask "rectangle"
 # We don't have root access, so:
 ##################################
 cask_args appdir: "~/Application"
-brew "gnupg"  # replaces gpg-suite
+brew "gnupg", args: ["bulid-from-source"]  # replaces gpg-suite
 ##################################
 
 {{ end -}}
