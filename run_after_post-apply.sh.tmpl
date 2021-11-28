@@ -8,7 +8,7 @@ export HASROOT=1
 export HASROOT=0
 {{ end }}
 
-pushd
+pushd .
 cd `chezmoi source-path`
 
 scripts/install-homebrew.sh
