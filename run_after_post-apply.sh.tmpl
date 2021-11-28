@@ -2,41 +2,163 @@
 
 set -ueo pipefail
 
-######### ADD BREW BUNDLE SYNTAX BELOW  #########
+
+
+
+#####################################################
+# ADD BREW FORMULAE/CASKS BELOW #####################
+#####################################################
 cat > Brewfile <<- EOF
+
+{{ if .has_root -}}
+
+############################
+# We have root access, so:
+############################
+brew "fish"
+############################
+
+{{ else - }}
+
+##################################
+# We don't have root access, so:
+##################################
+cask_args appdir: "~/Application"
+##################################
+
+{{ end -}}
+
+##################################
+# We don't need root access for:
+##################################
+brew "pyenv"
+brew "pyenv-virtualenv"
+brew "gh"
+brew "pinentry-mac"
+brew "gnupg"
+cask "mactex"
+cask "hiddenbar"
+cask "rectangle"
+##################################
+
 EOF
-#################################################
+#####################################################
+#####################################################
+#####################################################
 
-{{ if .has_root }}
-export HASROOT=1
-{{ else }}
-export HASROOT=0
-{{ end }}
 
-if ! which brew > /dev/null 2>&1; then
-    if [[ HASROOT -eq 1 ]]; then
-        echo Installing Homebrew as root
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    else
-        echo Installing Homebrew to ~/.homebrew
-	mkdir $HOME/.homebrew
-	pushd $HOME
-	curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C .homebrew
-	eval "$(.homebrew/bin/brew shellenv)"
-	brew update --force --quiet
-	chmod -R go-w "$(brew --prefix)/share/zsh"
-	popd
+
+
+
+
+
+#####################################################
+# CONVENIENCE FUNCTIONS #############################
+#####################################################
+chezlog() {
+    echo "[chezmoi] $1"
+}
+
+prompt_yn() {
+    while 1; do
+        read -p "$1 (y/n)? " yn
+        case $yn in
+            [Yy]* ) return 1;;
+            [Nn]* ) return 0;;
+        esac
+    done
+}
+
+check() {
+    chezlog "Checking if $1 is installed"
+    if ! which $1 > /dev/null 2>&1; then
+        return 1
     fi
+    chezlog "$1 executable found at $(which $1)"
+    return 0
+}
+#####################################################
+#####################################################
+#####################################################
+
+
+
+
+
+
+
+#####################################################
+# HOMEBREW ##########################################
+#####################################################
+if ! check brew; then
+    chezlog "Homebrew installation not found"
+    {{ if .has_root }}
+    chezlog "Installing Homebrew as root"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    {{ else }}
+    chezlog "Installing Homebrew to ~/.homebrew"
+    mkdir -p $HOME/.homebrew
+    pushd $HOME
+    curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C .homebrew
+    eval "$(.homebrew/bin/brew shellenv)"
+    brew update --force --quiet
+    chmod -R go-w "$(brew --prefix)/share/zsh"
+    popd
+    {{ end }}
+    chezlog "Successfully installed Homebrew"
 fi
 
-echo Installing brew formalae and casks
+chezlog "Using brew bundle with the following Brewfile:"
+cat Brewfile
+echo
 brew bundle
+chezlog "Successfully ran brew bundle"
+echo
+#####################################################
+#####################################################
+#####################################################
 
-if ! which fish > /dev/null 2>&1; then
+
+
+
+
+
+
+
+#####################################################
+# FISH ##############################################
+#####################################################
+if ! check fish; then
+    chezlog "fish installation not found"
+    chezlog "Installing fish with brew"
     brew install fish
-    if [[ $SHELL != `which fish` ]]; then
-        echo Setting the login shell to fish
-        chsh -s `which fish`
-    fi
+    chezlog "Successfully installed fish"
 fi
+
+chezlog "Checking if login shell is set to fish"
+if [[ $SHELL != `which fish` ]]; then
+    chezlog "Login shell is currently $SHELL"
+    chezlog "Attempting to set the login shell to $(which fish)"
+    while ! chsh -s `which fish`; do
+        if [[ prompt_yn "Failed, try again" -eq 0 ]]; then
+            break;
+        fi
+        chezlog "Trying again"
+    done
+else
+    chezlog "Login shell is set to fish"
+fi
+
+if ! check fisher; then
+    fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
+    chezlog "Successfully installed fisher"
+fi
+
+fish -c 'fisher update'
+fish -c 'fisher install jethrokuan/z'
+fish -c 'fisher install hauleth/agnoster'
+#####################################################
+#####################################################
+#####################################################
+
 
