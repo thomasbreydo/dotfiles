@@ -1,2 +1,6 @@
+{{- if not .has_sudo -}}
+pinentry-program {{ .chezmoi.homeDir -}}/bin/pinentry
+{{ end -}}
+
 default-cache-ttl 600
 max-cache-ttl 7200
