@@ -1,4 +1,4 @@
-{{- if not .has_sudo -}}
+{{- if not .has_root -}}
 pinentry-program {{ .chezmoi.homeDir -}}/bin/pinentry
 {{ end -}}
 
