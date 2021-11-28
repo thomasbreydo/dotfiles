@@ -3,7 +3,7 @@
 set -ueo pipefail
 
 ######### ADD BREW BUNDLE SYNTAX BELOW  #########
-cat > BREWBUNDLE <<- EOF
+cat > Brewfile <<- EOF
 brew "fish"
 EOF
 #################################################
@@ -31,7 +31,7 @@ if ! which brew > /dev/null 2>&1; then
 fi
 
 echo Installing brew formalae and casks
-echo $BREWBUNDLE | brew bundle
+brew bundle
 
 if [[ $SHELL != `which fish` ]]; then
     echo Setting the login shell to fish
