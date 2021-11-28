@@ -8,8 +8,9 @@ export HASROOT=0
 export HASROOT=1
 {{ end }}
 
-scripts/install-homebrew.sh
+chezmoi cd
 
+scripts/install-homebrew.sh
 brew bundle
 
-scripts/setup-fish.sh
+scripts/install-fish.sh
