@@ -1,9 +1,11 @@
 {{- $fullname := promptString "Full name" -}}
 {{- $email := promptString "Email" -}}
+{{- $has_root := promptBool "Do you have root access (y/n)" -}}
 
 [data]
     fullname = {{ $fullname | quote }}
     email = {{ $email | quote }}
+    has_root = {{ $has_root }}
 
 [git]
     autoCommit = true

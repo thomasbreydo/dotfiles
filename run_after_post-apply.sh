@@ -2,7 +2,7 @@
 
 set -ueo pipefail
 
-{{ if $has_root }}
+{{ if .has_root }}
 export HASROOT=0
 {{ else }}
 export HASROOT=1
