@@ -2,6 +2,9 @@
 set -gxp fish_user_paths $HOME/.homebrew/bin
 {{ end }}
 
+set fish_greeting  # hush greeting
+fish_vi_key_bindings
+
 pyenv init - | source
 pyenv virtualenv-init - | source
 
