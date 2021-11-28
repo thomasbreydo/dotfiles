@@ -1,4 +1,6 @@
+{{ if ! .has_sudo }}
 set -gxp fish_user_paths $HOME/.homebrew/bin
+{{ end }}
 
 pyenv init - | source
 pyenv virtualenv-init - | source
