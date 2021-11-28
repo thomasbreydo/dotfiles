@@ -2,17 +2,35 @@
 
 set -ueo pipefail
 
+######### ADD BREW BUNDLE SYNTAX BELOW  #########
+cat > BREWBUNDLE <<- EOF
+brew "fish"
+EOF
+#################################################
+
 {{ if .has_root }}
 export HASROOT=1
 {{ else }}
 export HASROOT=0
 {{ end }}
 
-#pushd `chezmoi source-path`
+pushd `chezmoi source-path`
 
-scripts/install-homebrew.sh
-brew bundle
+if [[ HASROOT -eq 1 ]]; then
+    echo Installing Homebrew as root
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo Installing Homebrew to ~/.homebrew
+    mkdir $HOME/.homebrew
+    pushd $HOME
+    curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C .homebrew
+    eval "$(.homebrew/bin/brew shellenv)"
+    brew update --force --quiet
+    chmod -R go-w "$(brew --prefix)/share/zsh"
+    popd
+fi
 
-scripts/install-fish.sh
+echo Setting the login shell to fish
+chsh -s `which fish`
 
-#popd
+popd
