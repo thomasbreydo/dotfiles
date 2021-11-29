@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -ueo pipefail
-pushd $(mktemp -d)
+pushd "$(mktemp -d)" > /dev/null 2>&1
 
 
 
@@ -208,4 +208,4 @@ defaults write com.googlecode.iterm2 PrefsCustomFolder /Users/student/.config/it
 #####################################################
 #####################################################
 
-popd
+popd > /dev/null 2>&1
