@@ -37,6 +37,7 @@ cask_args appdir: "~/Applications"
 brew "pyenv"
 brew "pyenv-virtualenv"
 brew "gh"
+brew "go"
 ##################################
 
 EOF
@@ -164,23 +165,14 @@ if ! check fisher; then
 fi
 
 
+# plugins are tracked automatically, just run
+#          fisher install <plugin>
+# no need to add the plugin below.
 echo
-chezlog "Updating fisher"
-fish -c 'fisher update'
-chezlog "Successfully updated fisher"
-
-FPLUGINS=""
-FPLUGINS="$FPLUGINS jethrokuan/z"
-FPLUGINS="$FPLUGINS jhillyerd/plugin-git"
-FPLUGINS="$FPLUGINS oh-my-fish/theme-agnoster"
-FPLUGINS="$FPLUGINS oh-my-fish/plugin-pyenv" 
-chezlog "Using fisher to install the following fish plugins:"
-echo $FPLUGINS | tr " " "\n"
-fish -c "fisher install $FPLUGINS"
-chezlog "Successfully installed fish plugins with fisher"
+chezlog "Updating fisher and re-installing plugins"
+fish -c 'fisher update'  
+chezlog "Successfully updated fisher and re-installed plugins"
 
 #####################################################
 #####################################################
 #####################################################
-
-
