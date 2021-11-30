@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# todo: split each into its own script
+
 set -ueo pipefail
 pushd "$(mktemp -d)" > /dev/null 2>&1
 
@@ -180,6 +182,11 @@ echo
 chezlog "Updating fisher and re-installing plugins"
 fish -c 'fisher update'  
 chezlog "Successfully updated fisher and re-installed plugins"
+
+chezlog "
+fich -c "abbr -a -U -- l 'ls -lAFh'"
+fich -c "abbr -a -U -- cm chezmoi"
+
 
 #####################################################
 #####################################################
