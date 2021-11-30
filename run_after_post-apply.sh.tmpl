@@ -24,6 +24,7 @@ cask "gpg-suite"
 cask "mactex"
 cask "hiddenbar"
 cask "rectangle"
+cask "iterm2"
 ############################
 
 {{ else -}}
@@ -183,6 +184,7 @@ echo
 chezlog "Defining fish abbreviations"
 fish -c "abbr -a -U -- l 'ls -lAFh'"
 fish -c "abbr -a -U -- cm chezmoi"
+fish -c "abbr -a -U -- vi nvim"
 chezlog "Successfully defined fish abbreviations" 
 
 
@@ -206,5 +208,7 @@ defaults write com.googlecode.iterm2 PrefsCustomFolder /Users/student/.config/it
 #####################################################
 #####################################################
 #####################################################
+
+
 
 popd > /dev/null 2>&1
