@@ -9,6 +9,57 @@ pushd "$(mktemp -d)" > /dev/null 2>&1
 
 
 
+#####################################################
+# ADD BREW FORMULAE/CASKS BELOW #####################
+#####################################################
+
+cat > Brewfile <<- EOF
+{{ if .has_root -}}
+
+############################
+# We have root access, so:
+############################
+brew "fish"
+cask "gpg-suite"
+cask "mactex"
+cask "hiddenbar"
+cask "rectangle"
+############################
+
+{{ else -}}
+
+##################################
+# We don't have root access, so:
+##################################
+cask_args appdir: "~/Applications"
+brew "gnupg"
+##################################
+
+{{ end -}}
+
+##################################
+# We don't need root access for:
+##################################
+brew "pyenv"
+brew "pyenv-virtualenv"
+brew "gh"
+brew "go"
+brew "chezmoi"
+brew "neovim"
+##################################
+
+EOF
+
+#####################################################
+#####################################################
+#####################################################
+
+
+
+
+
+
+
 
 #####################################################
 # CONVENIENCE FUNCTIONS #############################
@@ -70,50 +121,15 @@ if ! check brew; then
     chezlog "Successfully installed Homebrew"
 fi
 
-#####################################################
-#####################################################
-#####################################################
-
-
-
-
-
-
-
-
-#####################################################
-# ADD BREW FORMULAE/CASKS BELOW #####################
-#####################################################
-
-{{ if .has_root -}}
-
-chezlog "We have root access, so..."
-brew install "fish"
-brew install --cask "gpg-suite"
-brew install --cask "mactex"
-brew install --cask "hiddenbar"
-brew install --cask "rectangle"
-
-{{ else -}}
-
-chezlog "We don't have root access, so..."
-brew install gnupg
-
-{{ end -}}
-
-chezlog "We don't need root access for..."
-brew install "pyenv"
-brew install "pyenv-virtualenv"
-brew install "gh"
-brew install "go"
-brew install "chezmoi"
+echo
+chezlog "Using brew bundle with the following Brewfile:"
+cat Brewfile
+brew bundle
+chezlog "Successfully ran brew bundle"
 
 #####################################################
 #####################################################
 #####################################################
-
-
-
 
 
 
