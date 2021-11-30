@@ -1,3 +1,13 @@
+## Installing on a new machine
+
+```bash
+sh -c "$(curl -fsLS git.io/chezmoi)" -- init --one-shot thomasbreydo
+```
+
+As part of the install script, `chezmoi` will install itself with brew.
+
+## Useful commands
+
 To overwrite external changes to my home dir:
 	chezmoi re-add
 

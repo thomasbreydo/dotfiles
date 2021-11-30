@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 set -ueo pipefail
-
+pushd "$(mktemp -d)" > /dev/null 2>&1
 
 
 
 #####################################################
 # ADD BREW FORMULAE/CASKS BELOW #####################
 #####################################################
+
 cat > Brewfile <<- EOF
 {{ if .has_root -}}
 
@@ -38,9 +39,11 @@ brew "pyenv"
 brew "pyenv-virtualenv"
 brew "gh"
 brew "go"
+brew "chezmoi"
 ##################################
 
 EOF
+
 #####################################################
 #####################################################
 #####################################################
@@ -54,6 +57,7 @@ EOF
 #####################################################
 # CONVENIENCE FUNCTIONS #############################
 #####################################################
+
 chezlog() {
     echo "[chezmoi] $1"
 }
@@ -76,6 +80,7 @@ check() {
     chezlog "$1 executable found at $(which $1)"
     return 0
 }
+
 #####################################################
 #####################################################
 #####################################################
@@ -89,6 +94,7 @@ check() {
 #####################################################
 # HOMEBREW ##########################################
 #####################################################
+
 echo
 if ! check brew; then
     chezlog "Homebrew installation not found"
@@ -121,6 +127,7 @@ chezlog "Installing gnupg since gpg-suite requires sudo"
 brew install gnupg
 chezlog "Successfully installed gnupg"
 {{ end -}}
+
 #####################################################
 #####################################################
 #####################################################
@@ -135,6 +142,7 @@ chezlog "Successfully installed gnupg"
 #####################################################
 # FISH ##############################################
 #####################################################
+
 echo
 if ! check fish; then
     chezlog "fish installation not found"
@@ -159,7 +167,7 @@ else
 fi
 
 echo
-if ! check fisher; then
+if ! fish -c 'fisher' > /dev/null 2>&1; then
     fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
     chezlog "Successfully installed fisher"
 fi
@@ -176,3 +184,22 @@ chezlog "Successfully updated fisher and re-installed plugins"
 #####################################################
 #####################################################
 #####################################################
+
+
+
+
+
+
+
+#####################################################
+# DEFAULTS ##########################################
+#####################################################
+
+defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
+defaults write com.googlecode.iterm2 PrefsCustomFolder /Users/student/.config/iterm2
+
+#####################################################
+#####################################################
+#####################################################
+
+popd > /dev/null 2>&1
