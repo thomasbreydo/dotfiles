@@ -72,7 +72,9 @@ fi
 
 echo
 chezlog "Using brew bundle with the following Brewfile:"
-cat "{{- .chezmoi.homeDir -}}/.Brewfile"
+cat > .Brewfile <<- EOF
+{{ template (printf "%s/%s" .chezmoi.homeDir) }}
+EOF
 brew bundle
 chezlog "Successfully ran brew bundle"
 
