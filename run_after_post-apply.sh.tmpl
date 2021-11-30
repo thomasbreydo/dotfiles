@@ -1,62 +1,10 @@
 #!/usr/bin/env bash
+# vim: set filetype=bash: Vim doesn't handle .sh.tmpl well
 
 # todo: split each into its own script
 
 set -ueo pipefail
 pushd "$(mktemp -d)" > /dev/null 2>&1
-
-
-
-
-
-#####################################################
-# ADD BREW FORMULAE/CASKS BELOW #####################
-#####################################################
-
-cat > Brewfile <<- EOF
-{{ if .has_root -}}
-
-############################
-# We have root access, so:
-############################
-brew "fish"
-cask "gpg-suite"
-cask "mactex"
-cask "hiddenbar"
-cask "rectangle"
-cask "iterm2"
-############################
-
-{{ else -}}
-
-##################################
-# We don't have root access, so:
-##################################
-cask_args appdir: "~/Applications"
-brew "gnupg"
-##################################
-
-{{ end -}}
-
-##################################
-# We don't need root access for:
-##################################
-brew "pyenv"
-brew "pyenv-virtualenv"
-brew "gh"
-brew "go"
-brew "chezmoi"
-brew "neovim"
-##################################
-
-EOF
-
-#####################################################
-#####################################################
-#####################################################
-
-
-
 
 
 
@@ -124,7 +72,7 @@ fi
 
 echo
 chezlog "Using brew bundle with the following Brewfile:"
-cat Brewfile
+cat "{{- .chezmoi.homeDir -}}/.Brewfile"
 brew bundle
 chezlog "Successfully ran brew bundle"
 
