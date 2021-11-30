@@ -1,0 +1,11 @@
+##################################
+# We don't need root access for:
+##################################
+brew "pyenv"
+brew "pyenv-virtualenv"
+brew "gh"
+brew "go"
+brew "chezmoi"
+brew "neovim"
+##################################
+

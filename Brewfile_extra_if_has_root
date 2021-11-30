@@ -1,0 +1,11 @@
+############################
+# We have root access, so:
+############################
+brew "fish"
+cask "gpg-suite"
+cask "mactex"
+cask "hiddenbar"
+cask "rectangle"
+cask "iterm2"
+############################
+
