@@ -75,9 +75,9 @@ chezlog "Using brew bundle with the following Brewfile:"
 
 cat {{ .chezmoi.sourceDir -}}/Brewfile_default | tee -a Brewfile
 {{ if .has_root }}
-cat {{ .chezmoi.sourceDir -}}/Brewfile_extra_if_not_root | tee -a Brewfile
-{{ else }}
 cat {{ .chezmoi.sourceDir -}}/Brewfile_extra_if_has_root | tee -a Brewfile
+{{ else }}
+cat {{ .chezmoi.sourceDir -}}/Brewfile_extra_if_not_root | tee -a Brewfile
 {{ end }}
 
 brew bundle
