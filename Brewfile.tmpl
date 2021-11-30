@@ -1,4 +1,4 @@
-{{ if .has_root -}}
+{{- if .has_root -}}
 
 ############################
 # We have root access, so:
@@ -11,7 +11,7 @@ cask "rectangle"
 cask "iterm2"
 ############################
 
-{{ else -}}
+{{- else -}}
 
 ##################################
 # We don't have root access, so:
