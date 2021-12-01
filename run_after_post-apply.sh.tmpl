@@ -158,7 +158,7 @@ chezlog "Successfully defined fish abbreviations"
 #####################################################
 
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
-defaults write com.googlecode.iterm2 PrefsCustomFolder /Users/student/.config/iterm2
+defaults write com.googlecode.iterm2 PrefsCustomFolder {{ .chezmoi.homeDir -}}/.config/iterm2
 
 #####################################################
 #####################################################
