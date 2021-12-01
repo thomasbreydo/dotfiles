@@ -7,5 +7,6 @@ brew "gh"
 brew "go"
 brew "chezmoi"
 brew "neovim"
+brew "exiftool"
 ##################################
 
