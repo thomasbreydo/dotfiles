@@ -73,12 +73,12 @@ fi
 echo
 chezlog "Using brew bundle with the following Brewfile:\n"
 
-cat {{ .chezmoi.sourceDir -}}/Brewfile_default | tee -a Brewfile
 {{ if .has_root }}
 cat {{ .chezmoi.sourceDir -}}/Brewfile_extra_if_has_root | tee -a Brewfile
 {{ else }}
 cat {{ .chezmoi.sourceDir -}}/Brewfile_extra_if_not_root | tee -a Brewfile
 {{ end }}
+cat {{ .chezmoi.sourceDir -}}/Brewfile_default | tee -a Brewfile
 
 brew bundle
 chezlog "Successfully ran brew bundle"

@@ -1,6 +1,7 @@
 ##################################
 # We don't need root access for:
 ##################################
+cask "skim"
 brew "pyenv"
 brew "pyenv-virtualenv"
 brew "gh"
