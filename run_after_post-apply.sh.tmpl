@@ -92,6 +92,27 @@ chezlog "Successfully ran brew bundle"
 
 
 
+#####################################################
+# PYTHON ############################################
+#####################################################
+
+chezlog "Installing Python 3.10.0 with pyenv"
+pyenv install 3.10.0
+pyenv global 3.10.0
+chezlog "Successfully installed Python 3.10.0 with pyenv"
+
+chezlog "Installing the following Python packages"
+cat requirements.txt
+pip install -r requirements.txt
+chezlog "Successfully installed the above packages"
+
+#####################################################
+#####################################################
+#####################################################
+
+
+
+
 
 #####################################################
 # FISH ##############################################

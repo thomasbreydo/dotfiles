@@ -12,6 +12,8 @@ endif
 call plug#begin(data_dir . '/plugged')
 Plug 'lervag/vimtex'
 Plug 'doums/darcula'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -27,10 +29,23 @@ autocmd VimEnter *
 " ------------------------------------
 
 let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdmg'
+
+
+" ------------------------------------
+"  Keymaps
+" ------------------------------------
+
+let mapleader = "\<space>"
+
+nmap <leader>ve :edit ~/.config/nvim/init.vim<cr>
+nmap <leader>vr :source ~/.config/nvim/init.vim<cr>
+
+nmap <leader>xe :edit ~/Library/texmf/tex/latex/thomas.sty<cr>
+
+nmap <leader>re :edit ~/.local/share/chezmoi/run_after_post-apply.sh.tmpl<cr>
 
 
 
@@ -42,6 +57,8 @@ filetype plugin indent on
 syntax enable
 colorscheme darcula
 
+set list
+set listchars=tab:▸\ ,trail:·
 set number relativenumber
 set ruler
 set wildmenu
