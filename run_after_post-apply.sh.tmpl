@@ -97,7 +97,7 @@ chezlog "Successfully ran brew bundle"
 #####################################################
 
 chezlog "Installing Python 3.10.0 with pyenv"
-pyenv install 3.10.0
+pyenv install --skip-existing 3.10.0
 pyenv global 3.10.0
 chezlog "Successfully installed Python 3.10.0 with pyenv"
 
