@@ -2,7 +2,6 @@
 " Plugins
 " ---------------------------------------------
 
-
 " Download vim-plug if not installed
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -11,12 +10,9 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin(data_dir . '/plugged')
-
 Plug 'lervag/vimtex'
 Plug 'doums/darcula'
-
 call plug#end()
-
 
 " Automatically install missing plugins on startup
 autocmd VimEnter *
@@ -27,10 +23,25 @@ autocmd VimEnter *
 
 
 " ------------------------------------
+"  vimtex
+" ------------------------------------
+
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+
+
+" ------------------------------------
 "  General
 " ------------------------------------
 
 filetype plugin indent on
+syntax enable
+colorscheme darcula
+
 set number relativenumber
 set ruler
 set wildmenu
@@ -39,7 +50,6 @@ set ignorecase
 set smartcase
 set showmatch
 set termguicolors
-colorscheme darcula
 set lazyredraw 
 set background=dark
 set encoding=utf8
