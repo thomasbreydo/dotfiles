@@ -96,14 +96,16 @@ chezlog "Successfully ran brew bundle"
 # PYTHON ############################################
 #####################################################
 
+echo
 chezlog "Installing Python 3.10.0 with pyenv"
 pyenv install --skip-existing 3.10.0
 pyenv global 3.10.0
 chezlog "Successfully installed Python 3.10.0 with pyenv"
 
+echo
 chezlog "Installing the following Python packages"
-cat requirements.txt
-pip install -r requirements.txt
+cat {{ .chezmoi.sourceDir -}}/requirements.txt | tee -a reqs.txt
+pip install -r reqs.txt
 chezlog "Successfully installed the above packages"
 
 #####################################################
