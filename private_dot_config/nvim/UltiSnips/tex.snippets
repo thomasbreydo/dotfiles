@@ -2,7 +2,10 @@ snippet hw "HW problem solution"
 \documentclass{amsart}
 \usepackage{thomas}
 
-\title{$1}
+\newcommand{\pagenum}{$1}
+\newcommand{\probnum}{$2}
+
+\title{\probnum}
 \author{Thomas\ Breydo}
 \date{\today}
 
@@ -10,11 +13,16 @@ snippet hw "HW problem solution"
 
 \maketitle
 
-\textbf{Problem:} $2
+\textbf{Problem:} $3
 
 \vspace{0.5in}
 
 \textbf{Solution:} $0
+
+\vspace{0.5in}
+
+\textbf{Source code:} \href{https://github.com/thomasbreydo/linalg/\pagenum_\probnum/\pagenum_\probnum_Thomas_Breydo.tex}
+{Click here to open the source code on GitHub.}
 
 \end{document}
 endsnippet
