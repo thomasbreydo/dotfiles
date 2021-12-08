@@ -1,9 +1,19 @@
+% <GENERAL>
 \usepackage{amssymb}
 \usepackage{latexsym}
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{physics}
+\usepackage[dvipsnames]{xcolor}
+
 \usepackage{hyperref} 
+\hypersetup{
+    colorlinks,
+    linkcolor={red!20!black},
+    citecolor={blue!20!black},
+    urlcolor={blue!80!black}
+}
+
 
 \newcommand{\aand}{\quad\text{and}\quad}
 
@@ -13,3 +23,74 @@
 
 \newcommand{\SL}{\mathcal L}
 \newcommand{\SM}{\mathcal M}
+% </GENERAL>
+
+% <THEOREM>
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{mdframed}
+
+% Fix skipbelow bug, see
+% tex.stackexchange.com/questions/292083/mdframed-and-skipbelow/292090#292090
+\usepackage{xpatch}
+\makeatletter
+\xpatchcmd{\endmdframed}
+  {\aftergroup\endmdf@trivlist\color@endgroup}
+  {\endmdf@trivlist\color@endgroup\@doendpe}
+  {}{}
+\makeatother
+
+\mdfdefinestyle{tbbframe}{%
+    linewidth=1.5pt,
+    rightline=false,
+    leftline=true,
+    topline=false,
+    bottomline=false,
+    skipabove=\baselineskip,
+}
+\declaretheoremstyle[
+    bodyfont=\normalfont,
+    mdframed={style=tbbframe},
+]{tbbthm}
+
+\mdfdefinestyle{tbbblackframe}{%
+    style=tbbframe,
+    linecolor=Black,
+    backgroundcolor=Black!5,
+}
+\declaretheoremstyle[
+    style=tbbthm,
+    headfont=\bfseries\sffamily\color{Black!70!black},
+    mdframed={style=tbbblackframe},
+]{tbbblackthm}
+
+\mdfdefinestyle{tbbredframe}{%
+    style=tbbframe,
+    linecolor=OrangeRed,
+    backgroundcolor=OrangeRed!5,
+}
+\declaretheoremstyle[
+    style=tbbthm,
+    headfont=\bfseries\sffamily\color{OrangeRed!70!black},
+    mdframed={style=tbbredframe},
+]{tbbredthm}
+
+\mdfdefinestyle{tbbgreenframe}{%
+    style=tbbframe,
+    linecolor=ForestGreen,
+    backgroundcolor=ForestGreen!5,
+}
+\declaretheoremstyle[
+    style=tbbthm,
+    headfont=\bfseries\sffamily\color{ForestGreen!70!black},
+    mdframed={style=tbbgreenframe},
+]{tbbgreenthm}
+
+\declaretheorem[style=tbbredthm,name=Problem]{problem}
+\declaretheorem[style=tbbredthm,name=Problem,numbered=no]{problem*}
+\declaretheorem[style=tbbgreenthm,name=Claim]{claim}
+\declaretheorem[style=tbbgreenthm,name=Claim,numbered=no]{claim*}
+\declaretheorem[style=tbbblackthm,name=Note]{note}
+\declaretheorem[style=tbbblackthm,name=Note,numbered=no]{note*}
+% </THEOREM>
+
