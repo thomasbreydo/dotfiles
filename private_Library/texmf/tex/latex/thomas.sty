@@ -86,10 +86,21 @@
     mdframed={style=tbbgreenframe},
 ]{tbbgreenthm}
 
+\mdfdefinestyle{tbbblueframe}{%
+    style=tbbframe,
+    linecolor=RoyalBlue,
+    backgroundcolor=RoyalBlue!5,
+}
+\declaretheoremstyle[
+    style=tbbbluethm,
+    headfont=\bfseries\sffamily\color{RoyalBlue!70!black},
+    mdframed={style=tbbblueframe},
+]{tbbgreenthm}
+
 \declaretheorem[style=tbbredthm,name=Problem]{problem}
 \declaretheorem[style=tbbredthm,name=Problem,numbered=no]{problem*}
-\declaretheorem[style=tbbgreenthm,name=Claim]{claim}
-\declaretheorem[style=tbbgreenthm,name=Claim,numbered=no]{claim*}
+\declaretheorem[style=tbbbluethm,name=Claim]{claim}
+\declaretheorem[style=tbbbluethm,name=Claim,numbered=no]{claim*}
 \declaretheorem[style=tbbblackthm,name=Note]{note}
 \declaretheorem[style=tbbblackthm,name=Note,numbered=no]{note*}
 % </THEOREM>
