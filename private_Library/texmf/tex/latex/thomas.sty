@@ -1,5 +1,3 @@
-% <GENERAL>
-\usepackage{amssymb}
 \usepackage{latexsym}
 \usepackage{amsmath}
 \usepackage{mathtools}
@@ -23,6 +21,8 @@
 
 \newcommand{\SL}{\mathcal L}
 \newcommand{\SM}{\mathcal M}
+
+\DeclareMathOperator{\vspan}{span}
 % </GENERAL>
 
 % <THEOREM>
@@ -47,6 +47,8 @@
     topline=false,
     bottomline=false,
     skipabove=\baselineskip,
+    innertopmargin=4pt,
+    innerbottommargin=6pt,
 }
 \declaretheoremstyle[
     bodyfont=\normalfont,
@@ -95,12 +97,23 @@
     style=tbbbluethm,
     headfont=\bfseries\sffamily\color{RoyalBlue!70!black},
     mdframed={style=tbbblueframe},
-]{tbbgreenthm}
+]{tbbbluethm}
 
-\declaretheorem[style=tbbredthm,name=Problem]{problem}
-\declaretheorem[style=tbbredthm,name=Problem,numbered=no]{problem*}
-\declaretheorem[style=tbbbluethm,name=Claim]{claim}
-\declaretheorem[style=tbbbluethm,name=Claim,numbered=no]{claim*}
+\mdfdefinestyle{tbbpurplethm}{%
+    style=tbbframe,
+    linecolor=RoyalPurple,
+    backgroundcolor=RoyalPurple!5,
+}
+\declaretheoremstyle[
+    style=tbbpurplethm,
+    headfont=\bfseries\sffamily\color{RoyalPurple!70!black},
+    mdframed={style=tbbpurplethm},
+]{tbbpurplethm}
+
+\declaretheorem[style=tbbpurplethm,name=Problem]{problem}
+\declaretheorem[style=tbbpurplethm,name=Problem,numbered=no]{problem*}
+\declaretheorem[style=tbbgreenthm,name=Claim]{claim}
+\declaretheorem[style=tbbgreenthm,name=Claim,numbered=no]{claim*}
 \declaretheorem[style=tbbblackthm,name=Note]{note}
 \declaretheorem[style=tbbblackthm,name=Note,numbered=no]{note*}
 % </THEOREM>
