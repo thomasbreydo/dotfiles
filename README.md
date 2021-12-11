@@ -1,5 +1,8 @@
 ## Installing on a new machine
 
+
+### Step 1: Automated configuration
+
 In any shell, run
 
 ```fish
@@ -7,6 +10,25 @@ bash -c 'sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply thomasbreydo'
 ```
 
 As part of the install script, `chezmoi` will install itself with brew.
+
+
+### Step 2: Manual tweaks
+
+#### Skim
+
+In Skim preferences, under `Sync`,
+
+- turn on `Check for file changes`
+
+- turn on`Reload automatically`.
+
+- set `PDF-TeX Sync support` to
+
+```
+Preset:      Custom
+Command:     nvim
+Arguments:   --headless -c "VimtexInverseSearch %line '%file'"
+```
 
 ## To save changes
 
