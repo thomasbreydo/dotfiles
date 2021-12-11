@@ -24,11 +24,12 @@ Breaking it down,
 
 - `git push` pushes changes
 
+## Maintenance
 
-TODO
-	on this comp...
-	maybe manually 'brew install gnupg' if not root bc it doesn't work otherwise (brew bundle decides to skip it)
-	brew install nvim if not already installed
-	nvim config
-	fish config (from scratch ish!)
+Plugins are tracked automatically. Run
 
+```
+fisher install <plugin>
+```
+
+to both install and track.

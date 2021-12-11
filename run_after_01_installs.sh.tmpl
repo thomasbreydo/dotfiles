@@ -2,3 +2,109 @@
 # vim: set filetype=bash: Vim doesn't handle .sh.tmpl well
 
 set -ueo pipefail
+
+set -ueo pipefail
+pushd "$(mktemp -d)" > /dev/null 2>&1
+source {{ .extras_dir -}}/script_utils.sh
+
+
+
+
+
+#####################################################
+# HOMEBREW ##########################################
+#####################################################
+
+echo
+chezlog "Using brew bundle with the following Brewfile:\n"
+
+{{ if .has_root }}
+cat {{ .extras_dir -}}/Brewfile_extra_if_has_root | tee -a Brewfile
+{{ else }}
+cat {{ .extras_dir -}}/Brewfile_extra_if_not_root | tee -a Brewfile
+{{ end }}
+cat {{ .extras_dir -}}/Brewfile_default | tee -a Brewfile
+
+brew bundle
+chezlog "Successfully ran brew bundle"
+
+
+
+
+
+
+#####################################################
+# PYTHON ############################################
+#####################################################
+
+echo
+chezlog "Installing Python 3.10.0 with pyenv"
+pyenv install --skip-existing 3.10.0
+pyenv global 3.10.0
+chezlog "Successfully installed Python 3.10.0 with pyenv"
+
+echo
+chezlog "Installing the following Python packages"
+cat {{ .extras_dir -}}/requirements.txt | tee -a reqs.txt
+pip install -r reqs.txt
+chezlog "Successfully installed the above packages"
+
+
+
+
+
+
+#####################################################
+# FISH ##############################################
+#####################################################
+
+echo
+if ! check_available fish; then
+    chezlog "Did not find fish installed"
+    chezlog "Installing fish with brew"
+    brew install fish
+    chezlog "Successfully installed fish"
+fi
+
+echo
+chezlog "Checking if login shell is set to fish"
+if [[ $SHELL != `which fish` ]]; then
+    {{ .extras_dir -}}/set_login_shell_to_fish.sh
+else
+    chezlog "Login shell is set to fish"
+fi
+
+echo
+chezlog "Checking if fisher is installed"
+if ! fish -c 'fisher' > /dev/null 2>&1; then
+    chezlog "Did not find fisher installed"
+    chezlog "Installing fisher"
+    fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
+    chezlog "Successfully installed fisher"
+else
+    chezlog "Found fisher installed"
+fi
+
+
+echo
+chezlog "Updating fisher and re-installing plugins"
+fish -c 'fisher update'
+chezlog "Successfully updated fisher and re-installed plugins"
+
+echo
+chezlog "Defining fish abbreviations"
+fish {{ .extras_dir -}}/setup_abbrs.fish
+chezlog "Successfully defined fish abbreviations" 
+
+echo
+chezlog "Setting up fish theme"
+fish {{ .extras_dir -}}/setup_theme.fish
+chezlog "Successfully set up fish theme"
+
+
+
+
+
+
+popd > /dev/null 2>&1
+
