@@ -15,6 +15,39 @@ source {{ .extras_dir -}}/script_utils.sh
 # HOMEBREW ##########################################
 #####################################################
 
+if [[ -f "{{ .chezmoi.homeDir }}/.homebrew/bin/brew" ]]; then
+    eval "$({{ .chezmoi.homeDir }}/.homebrew/bin/brew shellenv)"
+fi
+
+
+echo
+if ! check_available brew; then
+    chezlog "Homebrew installation not found"
+    {{ if .has_root }}
+    chezlog "Installing Homebrew as root"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    {{ else }}
+    chezlog "Installing Homebrew to ~/.homebrew"
+    mkdir -p $HOME/.homebrew
+    pushd $HOME
+    curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C .homebrew
+    eval "$(.homebrew/bin/brew shellenv)"
+    brew update --force --quiet
+    chmod -R go-w "$(brew --prefix)/share/zsh"
+    popd
+    {{ end }}
+    chezlog "Successfully installed Homebrew"
+fi
+
+
+echo
+chezlog "Using brew bundle with the following Brewfile:\n"
+
+if ! check_available brew; then
+    chezlog "ERROR: Please install brew manually."
+    exit 1
+fi
+
 echo
 chezlog "Using brew bundle with the following Brewfile:\n"
 
@@ -69,7 +102,14 @@ fi
 echo
 chezlog "Checking if login shell is set to fish"
 if [[ $SHELL != `which fish` ]]; then
-    {{ .extras_dir -}}/set_login_shell_to_fish.sh
+    chezlog "Login shell is currently $SHELL"
+    chezlog "Attempting to set the login shell to $(which fish)"
+    while ! chsh -s `which fish`; do
+        if ! prompt_yn "Failed, try again"; then
+            break;
+        fi
+        chezlog "Trying again"
+    done
 else
     chezlog "Login shell is set to fish"
 fi

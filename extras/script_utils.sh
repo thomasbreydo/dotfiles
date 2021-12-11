@@ -6,8 +6,8 @@ prompt_yn() {
     while true; do
         read -p "$1 (y/n)? " yn
         case $yn in
-            [Yy]* ) return 1;;
-            [Nn]* ) return 0;;
+            [Yy]* ) return 0;;  # zero = OK
+            [Nn]* ) return 1;;  # non-zero = fail
         esac
     done
 }

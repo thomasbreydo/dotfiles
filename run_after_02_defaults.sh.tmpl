@@ -4,6 +4,11 @@
 set -ueo pipefail
 source {{ .extras_dir -}}/script_utils.sh
 
+echo
+chezlog "Setting defaults"
+
+
+
 
 #####################################################
 # iTerm #############################################
@@ -13,3 +18,14 @@ defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
 defaults write com.googlecode.iterm2 PrefsCustomFolder {{ .chezmoi.homeDir -}}/.config/iterm2
 
 
+#####################################################
+# Skim ##############################################
+#####################################################
+
+defaults write net.sourceforge.skim-app.skim SKAutoReloadFileUpdate 1
+defaults write net.sourceforge.skim-app.skim SKAutoReloadFileUpdate 1
+
+
+
+
+chezlog "Successfully set defaults"
