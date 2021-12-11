@@ -36,7 +36,6 @@ let g:tex_conceal='abdmg'
 highlight! link Conceal Normal
 
 
-
 " ------------------------------------
 "  Keymaps
 " ------------------------------------

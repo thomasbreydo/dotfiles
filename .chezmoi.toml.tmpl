@@ -6,6 +6,7 @@
     fullname = {{ $fullname | quote }}
     email = {{ $email | quote }}
     has_root = {{ $has_root }}
+    extras_dir = "{{ .chezmoi.sourceDir }}/extras"
 
 [git]
     autoCommit = true

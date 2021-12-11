@@ -74,11 +74,11 @@ echo
 chezlog "Using brew bundle with the following Brewfile:\n"
 
 {{ if .has_root }}
-cat {{ .chezmoi.sourceDir -}}/Brewfile_extra_if_has_root | tee -a Brewfile
+cat {{ .extras_dir -}}/Brewfile_extra_if_has_root | tee -a Brewfile
 {{ else }}
-cat {{ .chezmoi.sourceDir -}}/Brewfile_extra_if_not_root | tee -a Brewfile
+cat {{ .extras_dir -}}/Brewfile_extra_if_not_root | tee -a Brewfile
 {{ end }}
-cat {{ .chezmoi.sourceDir -}}/Brewfile_default | tee -a Brewfile
+cat {{ .extras_dir -}}/Brewfile_default | tee -a Brewfile
 
 brew bundle
 chezlog "Successfully ran brew bundle"
@@ -104,7 +104,7 @@ chezlog "Successfully installed Python 3.10.0 with pyenv"
 
 echo
 chezlog "Installing the following Python packages"
-cat {{ .chezmoi.sourceDir -}}/requirements.txt | tee -a reqs.txt
+cat {{ .extras_dir -}}/requirements.txt | tee -a reqs.txt
 pip install -r reqs.txt
 chezlog "Successfully installed the above packages"
 
