@@ -39,12 +39,6 @@ if ! check_available brew; then
     chezlog "Successfully installed Homebrew"
 fi
 
-
-if ! check_available brew; then
-    chezlog "ERROR: brew not found in path"
-    exit 1
-fi
-
 echo
 chezlog "Using brew bundle with the following Brewfile:\n"
 
