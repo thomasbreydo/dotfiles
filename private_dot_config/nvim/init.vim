@@ -34,7 +34,6 @@ let g:vimtex_view_skim_activate=1
 let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdmg'
-highlight! link Conceal Normal
 
 
 " ------------------------------------
@@ -58,7 +57,6 @@ nmap <leader>re :edit ~/.local/share/chezmoi/run_after_post-apply.sh.tmpl<cr>
 
 filetype plugin indent on
 syntax enable
-colorscheme darcula
 
 set list
 set listchars=tab:▸\ ,trail:·
@@ -83,3 +81,12 @@ set tabstop=4
 set autoindent
 set smartindent
 
+
+
+
+" ------------------------------------
+"  Colors
+" ------------------------------------
+
+colorscheme darcula
+highlight! clear Conceal
