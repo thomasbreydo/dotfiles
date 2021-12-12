@@ -40,11 +40,8 @@ if ! check_available brew; then
 fi
 
 
-echo
-chezlog "Using brew bundle with the following Brewfile:\n"
-
 if ! check_available brew; then
-    chezlog "ERROR: Please install brew manually."
+    chezlog "ERROR: brew not found in path"
     exit 1
 fi
 
