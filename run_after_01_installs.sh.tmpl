@@ -132,6 +132,11 @@ chezlog "Setting up fish theme"
 fish {{ .extras_dir -}}/setup_theme.fish
 chezlog "Successfully set up fish theme"
 
+echo
+chezlog "Setting up fish variables"
+fish {{ .extras_dir -}}/setup_uvars.fish
+chezlog "Successfully set up fish variables"
+
 
 
 
