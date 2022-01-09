@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# vim: set filetype=bash: Vim doesn't handle .sh.tmpl well
+# vim: set filetype=bash: Vim doesn't handle .fish well
 
 abbr -a -U -- l 'ls -lAFh'
 abbr -a -U -- cm 'chezmoi'
@@ -9,4 +9,4 @@ abbr -a -U -- vi 'nvim'
 abbr -a -U -- t 'tmux'
 abbr -a -U -- ta 'tmux attach'
 abbr -a -U -- np 'cd ~/linalg; and ./newprob.sh'
-abbr -a -U -- abbrs 'nvim {{ .chezmoi.sourceDir -}}{{- .chezmoi.sourceFile }}'
+abbr -a -U -- abbrs 'nvim (chezmoi execute-template "{{.extras_dir}}")/setup_abbrs.fish'
