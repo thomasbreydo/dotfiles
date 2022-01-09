@@ -51,12 +51,22 @@ nmap <leader>re :edit ~/.local/share/chezmoi/run_after_post-apply.sh.tmpl<cr>
 
 
 
+
+
+
+" ------------------------------------
+"  Syntax
+" ------------------------------------
+
+colorscheme darcula
+highlight! clear Conceal
+
+filetype plugin indent on
+syntax on
+
 " ------------------------------------
 "  General
 " ------------------------------------
-
-filetype plugin indent on
-syntax enable
 
 set list
 set listchars=tab:▸\ ,trail:·
@@ -81,12 +91,3 @@ set tabstop=4
 set autoindent
 set smartindent
 
-
-
-
-" ------------------------------------
-"  Colors
-" ------------------------------------
-
-colorscheme darcula
-highlight! clear Conceal
