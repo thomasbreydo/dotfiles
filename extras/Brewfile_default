@@ -10,5 +10,6 @@ brew "chezmoi"
 brew "neovim"
 brew "exiftool"
 brew "tmux"
+brew "wget"
 ##################################
 
