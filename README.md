@@ -30,6 +30,21 @@ Command:     nvim
 Arguments:   --headless -c "VimtexInverseSearch %line '%file'"
 ```
 
+#### YouCompleteMe
+
+1. Open `nvim` to have `:PlugInstall` run automatically.
+
+1. Then, set up YCM:
+
+```fish
+PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.9.9
+cd ~/.local/share/nvim/site/plugged/YouCompleteMe
+PYENV_VERSION=3.9.9 python3 install.py
+```
+
+YCM requires dynamic build of Python (hence the fresh Python install with
+`--enable-framework`).
+
 ## To save changes
 
 In `fish` shell, run
