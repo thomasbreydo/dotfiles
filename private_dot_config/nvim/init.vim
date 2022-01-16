@@ -14,6 +14,7 @@ Plug 'lervag/vimtex'
 Plug 'doums/darcula'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -34,6 +35,11 @@ let g:vimtex_view_skim_activate=1
 let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdmg'
+
+if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+endif
+au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 
 
 " ------------------------------------
