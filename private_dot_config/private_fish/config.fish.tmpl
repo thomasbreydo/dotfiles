@@ -1,5 +1,6 @@
 {{ if not .has_root -}}
-set -gxp fish_user_paths $HOME/.homebrew/bin
+fish_add_path $HOME/.homebrew/bin
+fish_add_path $HOME/bin
 {{ end -}}
 
 set fish_greeting  # hush greeting
