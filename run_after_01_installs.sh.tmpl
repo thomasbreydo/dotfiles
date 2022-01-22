@@ -143,7 +143,10 @@ chezlog "Setting up fish functions"
 fish {{ .extras_dir -}}/setup_funcs.fish
 chezlog "Successfully set up fish functions"
 
-
+echo
+chezlog "Installing gems"
+gem install zsteg
+chezlog "Successfully installed gems"
 
 
 popd > /dev/null 2>&1
