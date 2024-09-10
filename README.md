@@ -1,3 +1,5 @@
+(out of date; TODO update to after switching to stow)
+
 ## Installing on a new machine
 
 
