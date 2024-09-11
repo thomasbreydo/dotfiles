@@ -1,22 +1,4 @@
-(out of date; TODO update to after switching to stow)
-
-## Dotfiles that aren't tracked
-
-Some dotfiles aren't tracked (for example because they contain secrets).
-
-The following are not tracked:
-
-```
-~/.aws/credentials
-~/.netrc
-```
-
-## Outdated dotfiles
-
-The [`old/`](old) directory contains old dotfiles, just for the sake of reference
-if I ever go back to them.
-
-They're ignored by stow (see `.stow-local-ignore`).
+# Step 1: Automated configuration
 
 ## Installing on a new machine
 
@@ -25,7 +7,19 @@ git clone git@github.com:thomasbreydo/dotfiles.git ~/dotfiles
 brew install stow && cd ~/dotfiles && stow .
 ```
 
-## Adding a new dotfile to track
+## More about stow
+
+Some dotfiles aren't tracked (for example because they contain secrets), including
+
+```
+~/.aws/credentials
+~/.netrc
+```
+
+and others.
+
+The [`old/`](old) directory contains old dotfiles, in case I ever want to look at them.
+They're ignored by stow (see `.stow-local-ignore`).
 
 Say I wanted to start tracking my `~/.config/tmux/tmux.conf` file. I could do
 
@@ -35,23 +29,9 @@ mkdir -p .config/tmux/
 cp ../.config/tmux/tmxu.conf .config/tmux/tmux.conf
 ```
 
+# Step 2: Manual tweaks
 
-TODOOOOOOOOOOOOOOO WORK ON THIS:
-
-### Step 1: Automated configuration
-
-In any shell, run
-
-```fish
-bash -c 'sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply thomasbreydo'
-```
-
-As part of the install script, `chezmoi` will install itself with brew.
-
-
-### Step 2: Manual tweaks
-
-#### Skim
+## Skim
 
 In Skim preferences, under `Sync`,
 
@@ -67,7 +47,7 @@ Command:     nvim
 Arguments:   --headless -c "VimtexInverseSearch %line '%file'"
 ```
 
-#### TeXLab
+## TeXLab
 
 To ensure that TeXLab sees custom style files in
 `kpsewhich -var-value TEXMFHOME` (e.g. `thomas.sty`), run
@@ -75,29 +55,3 @@ To ensure that TeXLab sees custom style files in
 ```
 mktexlsr (kpsewhich -var-value TEXMFHOME)
 ```
-
-## To save changes
-
-In `fish` shell, run
-
-```fish
-chezmoi re-add; chezmoi update; chezmoi git push
-```
-
-Breaking it down,
-
-- `re-add` checks for changes to the actual files (e.g. `~/.ssh/config`)
-
-- `update` pulls and applies changes from GitHub (may need to resolve merge conflict)
-
-- `git push` pushes changes
-
-## Maintenance
-
-Plugins are tracked automatically. Run
-
-```
-fisher install <plugin>
-```
-
-to both install and track.
