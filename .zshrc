@@ -2,17 +2,26 @@
 # Path
 #########################################################################################################
  
+# general
 export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/.pyenv/shims:$PATH
+
+# miscellaneous
 export PATH=$HOME/.rbenv/shims:$PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
+export PATH=/usr/local/mysql/bin/:$PATH
+
+# pyenv
+export PATH=$HOME/.pyenv/shims:$PATH
 export PATH=$HOME/.pyenv/libexec/pyenv:$PATH
 export PATH=$HOME/.pyenv/libexec:$PATH
 export PATH=$HOME/.pyenv/bin:$PATH
-export PATH=/usr/local/mysql/bin/:$PATH
+
+# homebrew
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/sbin:$PATH
+export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
  
 #########################################################################################################
 # Tmux
