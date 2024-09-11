@@ -1,7 +1,42 @@
 (out of date; TODO update to after switching to stow)
 
+## Dotfiles that aren't tracked
+
+Some dotfiles aren't tracked (for example because they contain secrets).
+
+The following are not tracked:
+
+```
+~/.aws/credentials
+~/.netrc
+```
+
+## Outdated dotfiles
+
+The [`old/`](old) directory contains old dotfiles, just for the sake of reference
+if I ever go back to them.
+
+They're ignored by stow (see `.stow-local-ignore`).
+
 ## Installing on a new machine
 
+```sh
+git clone git@github.com:thomasbreydo/dotfiles.git ~/dotfiles
+brew install stow && cd ~/dotfiles && stow .
+```
+
+## Adding a new dotfile to track
+
+Say I wanted to start tracking my `~/.config/tmux/tmux.conf` file. I could do
+
+```sh
+cd ~/dotfiles
+mkdir -p .config/tmux/
+cp ../.config/tmux/tmxu.conf .config/tmux/tmux.conf
+```
+
+
+TODOOOOOOOOOOOOOOO WORK ON THIS:
 
 ### Step 1: Automated configuration
 

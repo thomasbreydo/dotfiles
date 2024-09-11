@@ -1,0 +1,63 @@
+brew "pyenv"
+brew "gh"
+brew "go"
+brew "neovim"
+brew "exiftool"
+brew "tmux"
+brew "wget"
+brew "trash"
+brew "mackup"
+brew "starship"
+brew "zoxide"
+brew "fzf"
+brew "gnupg"
+tap "heroku/brew"
+brew "heroku"
+brew "spoof-mac"
+#brew "ruby-install"
+#brew "chruby"
+brew "rbenv"
+brew "ruby-build"
+brew "npm"
+brew "ripgrep"
+brew "fd"
+brew "llvm@17"
+brew "stow"
+
+# for pyenv installs:
+brew "openssl"
+brew "readline"
+brew "sqlite3"
+brew  "xz"
+brew "zlib" 
+brew "tcl-tk"  
+
+# ctf
+brew "nmap"  
+
+
+cask "jetbrains-toolbox"
+cask "alacritty"
+cask "skim"
+cask "mactex"
+cask "hiddenbar"
+cask "rectangle"
+cask "dropbox"
+cask "cleanmymac"
+cask "hex-fiend"
+cask "skype"
+cask "keepingyouawake"
+
+tap "homebrew/cask-fonts"
+cask "font-jetbrains-mono-nerd-font" # for shell
+cask "font-lato"                     # for resume
+cask "docker"
+
+
+###################
+# PREVIOUSLY-USED #
+###################
+# brew "chezmoi"
+# brew "pyenv-virtualenv"
+# cask "iterm2"
+# cask "gpg-suite"

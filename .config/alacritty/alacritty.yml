@@ -1,0 +1,88 @@
+# For full config options, see alacritty.yml in https://github.com/alacritty/alacritty/releases/latest
+
+env:
+  TERM: xterm-256color
+
+
+window:
+  padding:
+    x: 5
+    y: 5
+  decorations: none  # no title bar
+  startup_mode: Maximized
+
+
+font:
+  size: 13.0
+  normal:  # as opposed to bold/italic, which are inferred
+    family: JetBrainsMonoNL Nerd Font Propo
+  bold:
+    family: JetBrainsMonoNL Nerd Font
+
+
+cursor:
+  style:
+    shape: Beam
+  vi_mode_style:
+    shape: Block
+
+
+colors:
+  primary:
+    background: '#282c34'
+    foreground: '#abb2bf'
+  cursor:
+    text:       CellBackground
+    cursor:     '#528bff' # syntax-cursor-color
+  selection:
+    text:       CellForeground
+    background: '#3e4451' # syntax-selection-color
+  normal:
+    black:      '#5c6370' # mono-3
+    red:        '#e06c75' # red 1
+    green:      '#98c379'
+    yellow:     '#e5c07b' # orange 2
+    blue:       '#61afef'
+    magenta:    '#c678dd'
+    cyan:       '#56b6c2'
+    white:      '#828997' # mono-2
+
+key_bindings:  # Note: \x02 is control-b (tmux leader)
+  - { key: D,          mods: Command,                    chars: "\x02%"         }  # split pane |
+  - { key: D,          mods: Shift|Command,              chars: "\x02\""        }  # split pane -
+
+  - { key: M,          mods: Shift|Command,              chars: "\x02s"         }  # list sessions
+  - { key: N,          mods: Command,                    chars: "\x02y"         }  # new session
+  - { key: T,          mods: Command,                    chars: "\x02c"         }  # new window
+  - { key: Return,     mods: Command,                    chars: "\x02z"         }  # toggle full-size zoom on current pane
+  - { key: Return,     mods: Shift|Command,              chars: "\x02!"         }  # create new window from current pane
+
+  - { key: H,          mods: Command,                    chars: "\x02h"         }  # select pane
+  - { key: J,          mods: Command,                    chars: "\x02j"         }  # .
+  - { key: K,          mods: Command,                    chars: "\x02k"         }  # .
+  - { key: L,          mods: Command,                    chars: "\x02l"         }  # .
+
+  - { key: H,          mods: Shift|Command,              chars: "\x02\x08"      }  # resize pane
+  - { key: J,          mods: Shift|Command,              chars: "\x02\x0a"      }  # .
+  - { key: K,          mods: Shift|Command,              chars: "\x02\x0b"      }  # .
+  - { key: L,          mods: Shift|Command,              chars: "\x02\x0c"      }  # .
+  
+  - { key: W,          mods: Command,                    chars: "\x02x"         }  # close window
+
+  - { key: Semicolon,  mods: Command,                    chars: "\x02:"         }  # open tmux command prompt
+
+  - { key: Key1,       mods: Command,                    chars: "\x021"         }  # jump to window
+  - { key: Key2,       mods: Command,                    chars: "\x022"         }  # .
+  - { key: Key3,       mods: Command,                    chars: "\x023"         }  # .
+  - { key: Key4,       mods: Command,                    chars: "\x024"         }  # . 
+  - { key: Key5,       mods: Command,                    chars: "\x025"         }  # .
+  - { key: Key6,       mods: Command,                    chars: "\x026"         }  # .
+  - { key: Key7,       mods: Command,                    chars: "\x027"         }  # . 
+  - { key: Key8,       mods: Command,                    chars: "\x028"         }  # .
+  - { key: Key9,       mods: Command,                    chars: "\x029"         }  # .
+
+  - { key: RBracket,   mods: Shift|Command,              chars: "\x02n"         }  # next window
+  - { key: LBracket,   mods: Shift|Command,              chars: "\x02p"         }  # previous window
+
+  - { key: Comma,      mods: Command,                    chars: "\x02,"         }  # rename window
+  - { key: Comma,      mods: Shift|Command,              chars: "\x02$"         }  # rename session

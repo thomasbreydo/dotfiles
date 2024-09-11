@@ -1,0 +1,21 @@
+[core]
+    editor = nvim
+
+[user]
+    name ="Thomas Breydo"
+    email ="tbreydo@gmail.com"
+    signingkey = 76F14309C97B7DC4
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = false
+    ff = only
+
+[commit]
+    gpgsign = true
+[gpg]
+    program = /opt/homebrew/bin/gpg
+[push]
+    autoSetupRemote = true

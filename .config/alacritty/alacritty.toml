@@ -1,0 +1,219 @@
+# VERY IMPORTANT
+# 
+# If you want cmd + shift + ___ then you have to do Shift|Command @ instead of Shift|Command 2.
+#
+# Like, the key needs to be uppercase.
+
+[colors.cursor]
+cursor = "#528bff"
+text = "CellBackground"
+
+[colors.normal]
+black = "#5c6370"
+blue = "#61afef"
+cyan = "#56b6c2"
+green = "#98c379"
+magenta = "#c678dd"
+red = "#e06c75"
+white = "#828997"
+yellow = "#e5c07b"
+
+[colors.primary]
+background = "#282c34"
+foreground = "#abb2bf"
+
+[colors.selection]
+background = "#3e4451"
+text = "CellForeground"
+
+[cursor.style]
+shape = "Beam"
+
+[cursor.vi_mode_style]
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 13.0
+
+[font.bold]
+family = "JetBrainsMonoNL Nerd Font"
+
+[font.normal]
+family = "JetBrainsMonoNL Nerd Font Propo"
+
+[[keyboard.bindings]]
+chars = "\u0002x"
+key = "w" # close window
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002:"  # tmux prompt
+key = ";"
+mods = "Command"
+
+############################## SPLITTING PANES, FOCUSING PANES
+
+[[keyboard.bindings]]
+chars = "\u0002%" # split this way |
+key = "d"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002\"" # split this way --
+key = "D"
+mods = "Shift|Command"
+
+[[keyboard.bindings]]
+chars = "\u0002z" # focus pane
+key = "Return" 
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002!" # pull pane into a new window
+key = "Return"
+mods = "Shift|Command"
+
+############################## SELECT PANE
+
+[[keyboard.bindings]]
+chars = "\u0002h"
+key = "h"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002j"
+key = "j"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002k"
+key = "k"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002l"
+key = "l"
+mods = "Command"
+ 
+############################## RESIZE PANE
+
+[[keyboard.bindings]]
+chars = "\u0002\b"
+key = "H"
+mods = "Shift|Command"
+
+[[keyboard.bindings]]
+chars = "\u0002\u000A"
+key = "J"
+mods = "Shift|Command"
+
+[[keyboard.bindings]]
+chars = "\u0002\u000B"
+key = "K"
+mods = "Shift|Command"
+
+[[keyboard.bindings]]
+chars = "\u0002\f"
+key = "L"
+mods = "Shift|Command"
+
+############################## SESSIONS
+
+[[keyboard.bindings]]
+chars = "\u0002s" # list all sessions
+key = "M"
+mods = "Shift|Command"
+
+[[keyboard.bindings]]
+chars = "\u0002y" # new session
+key = "n"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002c" # new window
+key = "t"
+mods = "Command"
+
+
+
+############################## JUMP TO WINDOW (Cmd + 1, Cmd + 2, ..., Cmd + 9)
+
+[[keyboard.bindings]]
+chars = "\u00021"
+key = "Key1"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00022"
+key = "Key2"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00023"
+key = "Key3"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00024"
+key = "Key4"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00025"
+key = "Key5"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00026"
+key = "Key6"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00027"
+key = "Key7"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00028"
+key = "Key8"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00029"
+key = "Key9"
+mods = "Command"
+
+############################## SWITCH TO THE ADJACENT WINDOW (cmd + shift + [ or cmd + shift + ])
+
+[[keyboard.bindings]]
+chars = "\u0002n"
+key = "}"
+mods = "Shift|Command"
+
+[[keyboard.bindings]]
+chars = "\u0002p"
+key = "{"
+mods = "Shift|Command"
+
+############################## RENAME WINDOW/SESSION
+#
+[[keyboard.bindings]]
+chars = "\u0002,"  # rename window
+key = ","
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002$"  # rename session
+key = "<"
+mods = "Shift|Command"
+
+[window]
+decorations = "none"
+startup_mode = "Maximized"
+
+[window.padding]
+x = 5
+y = 5

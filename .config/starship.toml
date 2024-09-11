@@ -1,0 +1,65 @@
+format = """[\
+$username\
+$hostname\
+$localip\
+$kubernetes\
+$directory\
+$docker_context\
+$container\
+$python\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+${custom.git_dirty}\
+$hg_branch\
+$line_break\
+$sudo\ 
+$status\
+\\$ ](white)"""  # literal \$ instead of using $character module
+
+add_newline      = false
+command_timeout  = 1000  # ms
+
+
+[directory]
+truncate_to_repo           = false
+truncation_length          = 1
+fish_style_pwd_dir_length  = 5
+style                      = 'bold cyan'
+
+
+[git_branch]
+style = 'bold cyan'
+
+
+[git_commit]
+style = 'bold cyan'
+
+
+[git_state]
+style = 'bold cyan'
+
+
+[custom.git_dirty]
+when    = 'test -n "$(git status --porcelain)"'
+symbol  = '●'
+style   = 'bold yellow'
+format  = '[$symbol]($style) '
+shell   = [ 'bash' ]
+
+
+[python]
+style = 'bold cyan'
+
+
+[sudo]
+format    = '\(can sudo\) '
+disabled  = false
+
+
+[status]
+format    = '[$symbol]($style) '
+symbol    = '✘'
+style     = 'bold red'
+disabled  = false
