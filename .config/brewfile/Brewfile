@@ -1,4 +1,5 @@
 brew "pyenv"
+brew "pipx"
 brew "gh"
 brew "go"
 brew "neovim"
