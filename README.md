@@ -21,15 +21,19 @@ and others.
 The [`old/`](old) directory contains old dotfiles, in case I ever want to look at them.
 They're ignored by stow (see `.stow-local-ignore`).
 
-Say I wanted to start tracking my `~/.config/tmux/tmux.conf` file. I could do
+**To start tracking a new file/directory,** simply use `track-dotfile`. For example,
 
 ```sh
-cd ~/dotfiles
-mkdir -p .config/tmux/
-cp ../.config/tmux/tmxu.conf .config/tmux/tmux.conf
+track-dotfile ~/.config/tmux/tmux.conf
 ```
 
 # Step 2: Manual tweaks
+
+## Installing everything from Brewfile
+
+```sh
+brundle  # this will auto-expand to brew bundle --file ~/.config/brewfile/Brewfile
+```
 
 ## Skim
 
@@ -54,4 +58,10 @@ To ensure that TeXLab sees custom style files in
 
 ```
 mktexlsr (kpsewhich -var-value TEXMFHOME)
+```
+
+## Installing Poetry for Python
+
+```sh
+pipx install poetry
 ```

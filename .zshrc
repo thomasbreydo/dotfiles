@@ -43,7 +43,7 @@ if [[ -z "$WITHOUT_TMUX"                   # override variable not set
 then
 
     # tgo
-    echo "(Reminder: start TMUX!)"
+    echo "(Reminder: start TMUX with tgo)"
 
 fi
 
@@ -154,6 +154,68 @@ export LLVM_SYS_170_PREFIX=$(brew --prefix llvm)
 
 
 #########################################################################################################
+# Tracking dotfiles, stow, etc.
+#########################################################################################################
+
+track-dotfile() {
+    emulate -L zsh
+    setopt local_options no_err_exit unset pipefail
+
+    # Check for correct number of arguments
+    if (( $# != 1 )); then
+        print "Usage: track-dotfile <path_to_file_or_directory>" >&2
+        print "Example: track-dotfile ~/.config/tmux/tmux.conf" >&2
+        print "         track-dotfile ~/.config/nvim" >&2
+        return 1
+    fi
+
+    local source_path="${1:A}"  # Resolve to absolute path
+    local home_dir="${HOME:A}"  # Resolve home directory to absolute path
+    local dotfiles_dir="${home_dir}/dotfiles"
+
+    # Check if the source is within the home directory
+    if [[ "$source_path" != ${home_dir}/* ]]; then
+        print "Error: ${source_path} is not within your home directory." >&2
+        print "Only files and directories within ${home_dir} can be tracked." >&2
+        return 1
+    fi
+
+    local relative_path="${source_path#$home_dir/}"
+    local target_path="${dotfiles_dir}/${relative_path}"
+
+    # Check if the source exists
+    if [[ ! -e "$source_path" ]]; then
+        print "Error: ${source_path} does not exist." >&2
+        return 1
+    fi
+
+    # Check if it's already in the dotfiles directory
+    if [[ "$source_path" == ${dotfiles_dir}/* ]]; then
+        print "Error: ${source_path} is already in the dotfiles directory." >&2
+        return 1
+    fi
+
+    # Create the parent directory in the dotfiles repo
+    mkdir -p "${target_path:h}" || { print "Error: Could not create directory ${target_path:h}" >&2; return 1; }
+
+    # Move the file or directory to the dotfiles repo
+    mv "$source_path" "$target_path" || { print "Error: Could not move ${source_path} to ${target_path}" >&2; return 1; }
+
+    # Use Stow to create the symlink
+    (cd "$dotfiles_dir" && stow --restow --target="$home_dir" .) || {
+        print "Error: Stow failed. Restoring original file/directory." >&2
+        mv "$target_path" "$source_path"
+        return 1
+    }
+
+    print "Successfully tracked ${source_path} in dotfiles repository."
+    print "A symlink has been created at the original location using Stow."
+    print "Next steps:"
+    print "1. Review the tracked item: ${target_path}"
+    print "2. Commit the changes to ~/dotfiles"
+}
+
+########################################################################################################
 # Everything below this line hasn't been organized 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
