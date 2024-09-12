@@ -1,4 +1,7 @@
+# Edit with `brewfile`
+
 brew "pyenv"
+brew "pyenv-virtualenv"  # mostly used to make a neovim virtualenv; otherwise use poetry's envs
 brew "pipx"
 brew "gh"
 brew "go"
