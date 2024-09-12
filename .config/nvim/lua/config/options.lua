@@ -24,3 +24,7 @@ vim.g.vimtex_view_skim_sync = 1 -- allows forward search after every successful 
 vim.g.UltiSnipsExpandTrigger = "<enter>"
 vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
+vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+-- Python
+vim.g.python3_host_prog = "/Users/thomasbreydo/.pyenv/versions/neovim-venv/bin/python"

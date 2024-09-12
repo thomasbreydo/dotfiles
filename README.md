@@ -60,7 +60,33 @@ To ensure that TeXLab sees custom style files in
 mktexlsr (kpsewhich -var-value TEXMFHOME)
 ```
 
-## Installing Poetry for Python
+## Python
+
+
+### Set up a virtualenv for neovim's Python backend
+
+```sh
+pyenv install 3.12
+pyenv virtualenv 3.12 neovim-venv
+pyenv activate neovim-venv
+pip install neovim black
+ln -s `pyenv which black` ~/.local/bin/black
+```
+
+Then, run
+
+```sh
+pyenv activate neovim-venv
+pyenv which python  # Note the path
+```
+
+Edit `~/.config/nvim/lua/config/options.lua` with the updated path:
+
+```lua
+let g:python3_host_prog = '/full/path/to/neovim-venv/bin/python'
+```
+
+### Install poetry (`pipx` should already be installed from Brewfile):
 
 ```sh
 pipx install poetry
