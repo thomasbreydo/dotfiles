@@ -3,7 +3,7 @@
 # CUSTOM ignores
 
 private_Library
-old
+^/old
 .DS_Store
 
 # DEFAULT stow ignores (from https://www.gnu.org/software/stow/manual/html_node/Types-And-Syntax-Of-Ignore-Lists.html)

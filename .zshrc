@@ -127,6 +127,14 @@ mdcd ()
     mkdir -p -- "$1" && cd -P -- "$1"
 }
 
+function git_main_branch() {  # used by gcom
+  if [[ -n "$(git branch --list main)" ]]; then
+    echo main
+  else
+    echo master
+  fi
+}
+
 #########################################################################################################
 # Inits and setups (e.g. pyenv or brew)
 #########################################################################################################
@@ -154,7 +162,7 @@ export LLVM_SYS_170_PREFIX=$(brew --prefix llvm)
 
 
 #########################################################################################################
-# Tracking dotfiles, stow, etc.
+# Dotfiles: track-dotfile and untrack-dotfile
 #########################################################################################################
 
 track-dotfile() {
@@ -202,7 +210,7 @@ track-dotfile() {
     mv "$source_path" "$target_path" || { print "Error: Could not move ${source_path} to ${target_path}" >&2; return 1; }
 
     # Use Stow to create the symlink
-    (cd "$dotfiles_dir" && stow --restow --target="$home_dir" .) || {
+    (cd "$dotfiles_dir" && stow --restow . --target="$home_dir") || {
         print "Error: Stow failed. Restoring original file/directory." >&2
         mv "$target_path" "$source_path"
         return 1
@@ -214,6 +222,51 @@ track-dotfile() {
     print "1. Review the tracked item: ${target_path}"
     print "2. Commit the changes to ~/dotfiles"
 }
+
+untrack-dotfile() {
+    emulate -L zsh
+    setopt local_options no_err_exit unset pipefail
+
+    # Check for correct number of arguments
+    if (( $# != 1 )); then
+        print "Usage: untrack-dotfile <path_to_file_or_directory>" >&2
+        print "Example: untrack-dotfile ~/.config/tmux/tmux.conf" >&2
+        print "         untrack-dotfile ~/.config/nvim" >&2
+        return 1
+    fi
+
+    local source_path="${1:A}"  # Resolve to absolute path
+    local home_dir="${HOME:A}"  # Resolve home directory to absolute path
+    local dotfiles_dir="${home_dir}/dotfiles"
+
+    # Check if the source is within the home directory
+    if [[ "$source_path" != ${home_dir}/* ]]; then
+        print "Error: ${source_path} is not within your home directory." >&2
+        print "Tracked files and directories are always within ${home_dir}." >&2
+        return 1
+    fi
+
+    local relative_path="${source_path#$home_dir/}"
+    local target_path="${dotfiles_dir}/${relative_path}"
+
+    # Check if the source exists
+    if [[ ! -e "$source_path" ]]; then
+        print "Error: ${source_path} does not exist." >&2
+        return 1
+    fi
+
+    # If the source is a link, just materialize it
+    if [[ -L "$source_path" ]]; then
+        mv "$target_path" "$source_path" || { print "Error: Could not move ${target_path} to ${source_path}" >&2; return 1; }
+        print "Successfully untracked ${source_path} by replacing the symlink with the actual file/directory."
+        return 0
+    fi
+
+    print "TODO: Couldn't untrack $source_path."
+    print "It's not a symlink. Rather, one of its parent folders is a symlink."
+    print "I don't have code to handle that yet."
+}
+
 
 ########################################################################################################
 # Everything below this line hasn't been organized 
