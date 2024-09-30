@@ -21,6 +21,6 @@ vim.cmd([[
 vim.cmd([[
   augroup vimtex_config
     autocmd!
-    autocmd User VimtexEventQuit call vimtex#latexmk#clean(0)
+    autocmd User VimtexEventQuit VimtexClean
   augroup END
 ]])

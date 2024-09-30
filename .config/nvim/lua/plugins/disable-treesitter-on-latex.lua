@@ -3,9 +3,6 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		opts = function(_, opts)
-			table.insert(opts.ignore_install, "latex")
-			return opts
-		end,
+		opts = { ignore_install = { "latex" } },
 	},
 }

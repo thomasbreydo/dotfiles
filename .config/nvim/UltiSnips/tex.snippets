@@ -13,6 +13,25 @@ def env(name):
 
 endglobal
 
+
+# CS 120
+snippet ,, ",\;" iA
+,\;$0
+endsnippet
+
+snippet vsp "\vspace{..}" iA
+\vspace{${1:0.2in}}
+
+$0
+endsnippet
+
+snippet CC "fancy C" iA
+\CC
+endsnippet
+
+# CS 120 end
+
+
 # CS 355
 context "math()"
 snippet negl "negl(lambda)" iA
@@ -82,7 +101,7 @@ endsnippet
 
 snippet pp "problem environment" bA
 \begin{problem}
-G\&W $1
+$1
 \end{problem}
 \begin{proof}
 \todo
@@ -99,6 +118,10 @@ snippet pf "proof environment" bA
 $0
 \todo
 \end{proof}
+
+\vspace{0.2in}
+
+$0
 endsnippet
 
 snippet alg "Pseudocode environment" bA
