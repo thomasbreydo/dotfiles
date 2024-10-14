@@ -667,7 +667,7 @@ endsnippet
 
 priority 100
 context "math()"
-snippet '(?<!\\)(?:(?<!\\comment{))(omega|alpha|beta|sigma|mu|theta|lambda|ell)' "ln" rwA
+snippet '(?<!\\)(?:(?<!\\comment{))(omega|phi|tau|alpha|beta|sigma|mu|theta|lambda|ell)' "ln" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
@@ -850,10 +850,17 @@ snippet SI "SI" iA
 \SI{$1}{$2}
 endsnippet
 
+# It used to be this:
+#snippet bigfun "Big function" iA
+#\begin{align*}
+#	$1: $2 &\longrightarrow $3 \\\\
+#	$4 &\longmapsto $1($4) = $0
+#.\end{align*}
+#endsnippet
 snippet bigfun "Big function" iA
 \begin{align*}
 	$1: $2 &\longrightarrow $3 \\\\
-	$4 &\longmapsto $1($4) = $0
+	$4 &\longmapsto $0
 .\end{align*}
 endsnippet
 
