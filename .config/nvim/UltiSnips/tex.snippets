@@ -66,11 +66,19 @@ endsnippet
 
 # My snippets
 
-snippet BF "textsf" iA
+snippet BF "textbf" iA
 \textbf{$1}$0
 endsnippet
 
-snippet IT "textsf" iA
+snippet SC "textsc" iA
+\textsc{$1}$0
+endsnippet
+
+snippet MBB "mathbb" iA
+\mathbb{$1}$0
+endsnippet
+
+snippet IT "textit" iA
 \textit{$1}$0
 endsnippet
 
@@ -80,23 +88,28 @@ endsnippet
 
 context "math()"
 snippet comm "comment" iA
-\cmt{\text{$1}}$0
+\tag*{($1)}$0
 endsnippet
 
+#context "math()"
+#snippet comm "comment" iA
+#\cmt{\text{$1}}$0
+#endsnippet
+
 snippet wlog "without loss of generality" iA
-without loss of generality, $0
+without loss of generality$0
 endsnippet
 
 snippet Wlog "Without loss of generality" iA
-Without loss of generality, $0
+Without loss of generality$0
 endsnippet
 
 snippet Sff "Suppose for the sake of contradiction" iA
-Suppose for the sake of contradiction $0
+Suppose for the sake of contradiction$0
 endsnippet
 
 snippet sff "Suppose for the sake of contradiction" iA
-suppose for the sake of contradiction $0
+suppose for the sake of contradiction$0
 endsnippet
 
 snippet pp "problem environment" bA
@@ -106,6 +119,8 @@ $1
 \begin{proof}
 \todo
 \end{proof}
+
+\vspace{0.2in}
 
 \newpage
 
@@ -242,6 +257,23 @@ $0
 \end{document}
 endsnippet
 
+###################################################
+# For WIM
+snippet fsl "" iA
+fundamental structure theorem$0
+endsnippet
+
+snippet fgl "finitely generated abelian group" iA
+finitely generated abelian group$0
+endsnippet
+###################################################
+
+snippet ackk "ackowledgement to Sally"
+\begin{note}
+	I worked on this problem set with Sally Zhu
+\end{note}
+endsnippet
+
 snippet beg "begin{} / end{}" bA
 \\begin{$1}
 	$0
@@ -250,12 +282,12 @@ endsnippet
 
 priority 100
 snippet ++ "cdots" iA
-+\cdots+
++\cdots+ $0
 endsnippet
 
 priority 100
 snippet ;; "cdots" iA
-\cdots
+\cdots $0
 endsnippet
 
 priority 100
@@ -377,6 +409,10 @@ endsnippet
 context "math()"
 snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+snippet qeq "   =   " iA
+\quad=\quad
 endsnippet
 
 snippet == "=...=" iA
@@ -665,15 +701,28 @@ snippet norm "norm" iA
 \|$1\|$0
 endsnippet
 
+priority 101
+context "math()"
+snippet '(?<!\\)(?:(?<!\\comment{))(varphi)' "ln" rwA
+\\`!p snip.rv = match.group(1)`
+endsnippet
+
+# Complexity theory
 priority 100
 context "math()"
-snippet '(?<!\\)(?:(?<!\\comment{))(omega|phi|tau|alpha|beta|sigma|mu|theta|lambda|ell)' "ln" rwA
+snippet '(?<!\\)(?:(?<!\\comment{))(coNP|NP)' "ln" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
 priority 100
 context "math()"
-snippet '(?<!\\)(?:(?<!\\comment{))(iff|vrank|vrange|vspan|vprod|vdet|vtr|sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
+snippet '(?<!\\)(?:(?<!\\comment{))(phi|tau|alpha|beta|sigma|mu|theta|lambda|delta|ell)' "ln" rwA
+\\`!p snip.rv = match.group(1)`
+endsnippet
+
+priority 100
+context "math()"
+snippet '(?<!\\)(?:(?<!\\comment{))(ker|iff|vrank|vrange|vspan|vprod|vdet|vtr|sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
 \\`!p snip.rv = match.group(1)` 
 endsnippet
 
@@ -812,8 +861,14 @@ snippet ZZ "Z" iA
 \Z
 endsnippet
 
-snippet <! "normal" iA
+context "math()"
+snippet tril "normal" iA
 \triangleleft 
+endsnippet
+
+context "math()"
+snippet trir "normal" iA
+\triangleright 
 endsnippet
 
 snippet <> "hokje" iA
@@ -831,6 +886,12 @@ priority 100
 context "math()"
 snippet qtt "quad-padded text" iA
 \quad\text{$1}\quad $0
+endsnippet
+
+priority 100
+context "math()"
+snippet qq "quad-padded content" iA
+\quad $1\quad $0
 endsnippet
 
 priority 10
