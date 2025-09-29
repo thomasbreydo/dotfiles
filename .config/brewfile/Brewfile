@@ -39,6 +39,7 @@ brew "tcl-tk"
 
 # ctf
 brew "nmap"  
+brew "pdm"
 
 
 cask "jetbrains-toolbox"
@@ -52,6 +53,7 @@ cask "cleanmymac"
 cask "hex-fiend"
 cask "skype"
 cask "keepingyouawake"
+cask "wireshark"
 
 tap "homebrew/cask-fonts"
 cask "font-jetbrains-mono-nerd-font" # for shell

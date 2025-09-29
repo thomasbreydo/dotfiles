@@ -14,6 +14,25 @@ def env(name):
 endglobal
 
 
+# CS 143 start
+snippet hypo "\Hypo[]{}" iA
+\Hypo[]{$1}$0
+endsnippet
+
+snippet infer "\Infer[]{}" iA
+\Infer$1[]{$2}$0
+endsnippet
+
+snippet soo "so,S,E" iA
+so,S_$1,E\vdash $2 \mapsto $0
+endsnippet
+
+snippet omc "O,M,C" iA
+O,M,C\vdash $0
+endsnippet
+# CS 143 end
+
+
 # CS 120
 snippet ,, ",\;" iA
 ,\;$0
@@ -80,6 +99,10 @@ endsnippet
 
 snippet IT "textit" iA
 \textit{$1}$0
+endsnippet
+
+snippet TT "texttt" iA
+\texttt{$1}$0
 endsnippet
 
 snippet SF "textsf" iA

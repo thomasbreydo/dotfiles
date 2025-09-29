@@ -19,11 +19,11 @@ vim.opt.listchars:append({
 -- VimTeX
 vim.g.vimtex_view_method = "skim"
 vim.g.vimtex_view_skim_sync = 1 -- allows forward search after every successful compilation
+vim.g.vimtex_quickfix_mode = 0  -- DON'T set to 1. When quickfix is auto-opened, it breaks UltiSnips \(\) completion.
 
 -- UltiSnips
 vim.g.UltiSnipsExpandTrigger = "<enter>"
 vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
-vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 -- Python
